@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>gauge_kotlin_maven</groupId>
-    <artifactId>gauge_kotlin_maven</artifactId>
+    <groupId>me.takehara</groupId>
+    <artifactId>e2e</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -29,6 +29,21 @@
             <artifactId>kotlin-test</artifactId>
             <version>1.6.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.uzabase</groupId>
+            <artifactId>playtest-gauge-rest</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.uzabase</groupId>
+            <artifactId>playtest-gauge-db</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1</version>
         </dependency>
     </dependencies>
 

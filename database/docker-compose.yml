@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  postgres:
+    build: .
+    image: sskl-postgres:1.0-SNAPSHOT
+    container_name: sskl-postgres
+    ports:
+      - "5432:5432"
