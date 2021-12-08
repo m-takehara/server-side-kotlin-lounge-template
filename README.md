@@ -44,7 +44,7 @@ IntelliJ IDEA に Gauge プラグインを入れた上で、`e2e/specs/users.spe
 
 ```shell
 cd database
-docker compose up
+docker compose up -d
 
 # 停止
 docker compose down -v --rmi all
