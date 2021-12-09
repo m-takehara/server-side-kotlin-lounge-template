@@ -14,7 +14,6 @@ import javax.xml.parsers.DocumentBuilderFactory
 class ZennAccountDriverImpl : ZennAccountDriver {
     override fun findAccountById(id: String): ZennAccountModel {
         val (request, response, result) = "https://zenn.dev/$id"
-            .let { URLEncoder.encode(it, StandardCharsets.UTF_8) }
             .httpGet()
             .response()
         return if (response.statusCode == 200) ZennAccountModel(id)
@@ -23,7 +22,6 @@ class ZennAccountDriverImpl : ZennAccountDriver {
 
     override fun findArticlesByAccountId(id: String): List<ZennArticleModel> {
         val (request, response, result) = "https://zenn.dev/$id/feed"
-            .let { URLEncoder.encode(it, StandardCharsets.UTF_8) }
             .httpGet()
             .response()
         val rssFeed = when (result) {

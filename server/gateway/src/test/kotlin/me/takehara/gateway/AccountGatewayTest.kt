@@ -29,4 +29,8 @@ class AccountGatewayTest : StringSpec({
         verify { service.value }
         verify { accountsDriver.store(AccountModel("userId", "accountId", "service")) }
     }
+
+    "ユーザIDに紐づくすべてのアカウントを取得できる" {
+
+    }
 })

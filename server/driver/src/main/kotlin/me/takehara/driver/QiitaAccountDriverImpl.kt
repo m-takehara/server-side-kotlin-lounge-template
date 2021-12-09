@@ -12,7 +12,6 @@ import javax.xml.parsers.DocumentBuilderFactory
 class QiitaAccountDriverImpl : QiitaAccountDriver {
     override fun findAccountById(id: String): QiitaAccountModel {
         val (request, response, result) = "https://qiita.com/api/v2/users/${id}"
-            .let { URLEncoder.encode(it, StandardCharsets.UTF_8) }
             .httpGet()
             .response()
 
@@ -25,10 +24,8 @@ class QiitaAccountDriverImpl : QiitaAccountDriver {
     }
 
     override fun findArticlesByAccountId(id: String): List<QiitaArticleModel> {
-        val (request, response, result) = "https://qiita.com/api/v2/items?query=qiita user:$id"
-            .let { URLEncoder.encode(it, StandardCharsets.UTF_8) }
-            .httpGet()
-            .response()
+        val url = "https://qiita.com/$id/feed"
+        val (request, response, result) = url.httpGet().response()
         val rssFeed = when (result) {
             is Result.Success -> result.get().let(::String)
             is Result.Failure -> throw ZennAccountNotFoundException(id)
@@ -42,7 +39,7 @@ class QiitaAccountDriverImpl : QiitaAccountDriver {
         return (0 until elements.length).map { index ->
             val item = elements.item(index) as Element
             val title = item.getElementsByTagName("title").item(0).textContent
-            val url = item.getElementsByTagName("link").item(0).textContent
+            val url = item.getElementsByTagName("link").item(0).attributes.getNamedItem("href").textContent
             QiitaArticleModel(title, url)
         }
     }

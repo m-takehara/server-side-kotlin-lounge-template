@@ -3,22 +3,22 @@ package me.takehara.rest
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.gson.*
-import io.ktor.http.*
-import io.ktor.request.*
-import io.ktor.response.*
 import io.ktor.routing.*
 import me.takehara.driver.AccountsDriverImpl
 import me.takehara.driver.QiitaAccountDriverImpl
 import me.takehara.driver.UsersDriverImpl
 import me.takehara.driver.ZennAccountDriverImpl
 import me.takehara.gateway.AccountGateway
+import me.takehara.gateway.ArticleGateway
 import me.takehara.gateway.UserGateway
 import me.takehara.gateway.interfaces.AccountsDriver
 import me.takehara.gateway.interfaces.QiitaAccountDriver
 import me.takehara.gateway.interfaces.UsersDriver
 import me.takehara.gateway.interfaces.ZennAccountDriver
 import me.takehara.port.AccountPort
+import me.takehara.port.ArticlePort
 import me.takehara.port.UserPort
+import me.takehara.usecase.FindAllArticleUseCase
 import me.takehara.usecase.LinkAccountUseCase
 import me.takehara.usecase.StoreUserUseCase
 import org.jetbrains.exposed.sql.Database
@@ -42,11 +42,20 @@ fun Application.module() {
     }
 
     routing {
+        val userResource by inject<UserResource>()
         route("/users") {
-            val userResource by inject<UserResource>()
 
-            post { userResource.store(call) }
-            put("/{userId}") { userResource.linkAccount(call) }
+            post {
+                userResource.store(call)
+            }
+            put("/{userId}") {
+                userResource.linkAccount(call)
+            }
+        }
+        route("/articles") {
+            get {
+                userResource.findAllArticles(call)
+            }
         }
     }
 }
@@ -61,15 +70,17 @@ val driverModules = module {
 val gatewayModules = module {
     single<AccountPort> { AccountGateway(get()) }
     single<UserPort> { UserGateway(get()) }
+    single<ArticlePort> { ArticleGateway(get(), get(), get()) }
 }
 
 val useCaseModules = module {
     single { LinkAccountUseCase(get()) }
     single { StoreUserUseCase(get()) }
+    single { FindAllArticleUseCase(get()) }
 }
 
 val restModules = module {
-    single { UserResource(get(), get()) }
+    single { UserResource(get(), get(), get()) }
 }
 
 private fun database(environment: ApplicationEnvironment): Module {

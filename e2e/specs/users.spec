@@ -23,7 +23,6 @@
 * DB"demo_db"の"demo_schema"スキーマの"accounts"テーブルの、"user_id"を"'m-takehara'"で取得した一意の"service"が文字列の"zenn"である
 
 ## ユーザに紐付いているアカウントの全記事を取得できる
-tags: unimplemented
 * DBのレコードをすべて削除する
 * DBにユーザ"m-takehara"のレコードを挿入する
 * DBのユーザ"m-takehara"に"qiita"のアカウント"m-takehara"を紐付ける
