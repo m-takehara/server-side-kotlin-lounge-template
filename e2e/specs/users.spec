@@ -26,8 +26,8 @@
 tags: unimplemented
 * DBのレコードをすべて削除する
 * DBにユーザ"m-takehara"のレコードを挿入する
-* DBのユーザ"m-takehara"に"Qiita"のアカウント"m-takehara"を紐付ける
-* DBのユーザ"m-takehara"に"Zenn"のアカウント"m_takehara"を紐付ける
+* DBのユーザ"m-takehara"に"qiita"のアカウント"m-takehara"を紐付ける
+* DBのユーザ"m-takehara"に"zenn"のアカウント"m_takehara"を紐付ける
 * URL"http://localhost:8080/articles?userId=m-takehara"にGETリクエストを送る
 * レスポンスステータスコードが"200"である
 * レスポンスのJSONの"$.articles[0].title"が文字列の"え！！社内ネットワーク内だけで Code with me を！？"である
