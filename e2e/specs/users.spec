@@ -1,12 +1,14 @@
 # ユーザに関するテスト
 
 ## ユーザを新規作成できる
+tags: unimplemented
 * DBのレコードをすべて削除する
 * URL"http://localhost:8080/users"にボディ<file:jsons/create-user.json>で、POSTリクエストを送る
 * レスポンスステータスコードが"201"である
 * レスポンスのJSONの"$.id"が文字列の"m-takehara"である
 
 ## ユーザにQiitaアカウントを紐付けられる
+tags: unimplemented
 * DBのレコードをすべて削除する
 * DBにユーザ"m-takehara"のレコードを挿入する
 * URL"http://localhost:8080/users/m-takehara"にボディ<file:jsons/link-qiita.json>で、PUTリクエストを送る
@@ -15,6 +17,7 @@
 * DB"demo_db"の"demo_schema"スキーマの"accounts"テーブルの、"user_id"を"'m-takehara'"で取得した一意の"service"が文字列の"qiita"である
 
 ## ユーザにZennアカウントを紐付けられる
+tags: unimplemented
 * DBのレコードをすべて削除する
 * DBにユーザ"m-takehara"のレコードを挿入する
 * URL"http://localhost:8080/users/m-takehara"にボディ<file:jsons/link-zenn.json>で、PUTリクエストを送る
@@ -23,6 +26,7 @@
 * DB"demo_db"の"demo_schema"スキーマの"accounts"テーブルの、"user_id"を"'m-takehara'"で取得した一意の"service"が文字列の"zenn"である
 
 ## ユーザに紐付いているアカウントの全記事を取得できる
+tags: unimplemented
 * DBのレコードをすべて削除する
 * DBにユーザ"m-takehara"のレコードを挿入する
 * DBのユーザ"m-takehara"に"qiita"のアカウント"m-takehara"を紐付ける
